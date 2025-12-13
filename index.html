@@ -18,6 +18,28 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-gradient-start: #667eea;
+            --bg-gradient-end: #764ba2;
+            --bg-white: #ffffff;
+            --text-dark: #333333;
+            --text-light: rgba(255, 255, 255, 0.95);
+            --card-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --footer-bg: #1a1a1a;
+            --header-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient-start: #1a1a2e;
+            --bg-gradient-end: #16213e;
+            --bg-white: #0f1419;
+            --text-dark: #e4e6eb;
+            --text-light: rgba(255, 255, 255, 0.9);
+            --card-bg: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            --footer-bg: #000000;
+            --header-bg: rgba(15, 20, 25, 0.95);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -26,9 +48,10 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+            color: var(--text-dark);
             overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         .container {
@@ -39,13 +62,14 @@
 
         /* Header */
         header {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--header-bg);
             padding: 20px 0;
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
             backdrop-filter: blur(10px);
+            transition: background 0.3s ease;
         }
 
         nav {
@@ -67,10 +91,11 @@
             display: flex;
             gap: 30px;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
-            color: #333;
+            color: var(--text-dark);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
@@ -78,6 +103,27 @@
 
         .nav-links a:hover {
             color: #667eea;
+        }
+
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
         }
 
         .cta-btn {
@@ -186,7 +232,8 @@
         /* Features Section */
         .features {
             padding: 100px 0;
-            background: white;
+            background: var(--bg-white);
+            transition: background 0.3s ease;
         }
 
         .section-title {
@@ -194,7 +241,7 @@
             font-size: 42px;
             font-weight: 800;
             margin-bottom: 60px;
-            color: #333;
+            color: var(--text-dark);
         }
 
         .features-grid {
@@ -204,7 +251,7 @@
         }
 
         .feature-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: var(--card-bg);
             padding: 40px;
             border-radius: 20px;
             text-align: center;
@@ -320,10 +367,13 @@
             margin: 30px 0;
         }
 
+
+
         /* Testimonials */
         .testimonials {
             padding: 100px 0;
-            background: white;
+            background: var(--bg-white);
+            transition: background 0.3s ease;
         }
 
         .testimonials-grid {
@@ -333,7 +383,7 @@
         }
 
         .testimonial-card {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: var(--card-bg);
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -344,6 +394,7 @@
             line-height: 1.8;
             margin-bottom: 20px;
             font-style: italic;
+            color: var(--text-dark);
         }
 
         .testimonial-author {
@@ -379,9 +430,10 @@
 
         /* Footer */
         footer {
-            background: #1a1a1a;
+            background: var(--footer-bg);
             color: white;
             padding: 60px 0 30px;
+            transition: background 0.3s ease;
         }
 
         .footer-content {
@@ -454,7 +506,7 @@
         .menu-toggle span {
             width: 25px;
             height: 3px;
-            background: #333;
+            background: var(--text-dark);
             margin: 3px 0;
             transition: 0.3s;
         }
@@ -470,7 +522,7 @@
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background: white;
+                background: var(--header-bg);
                 flex-direction: column;
                 padding: 20px;
                 box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -497,6 +549,12 @@
             .testimonials-grid {
                 grid-template-columns: 1fr;
             }
+
+            .theme-toggle {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
         }
     </style>
 </head>
@@ -516,6 +574,7 @@
                     <li><a href="#formations">Formations</a></li>
                     <li><a href="#temoignages">Témoignages</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button></li>
                     <li><a href="#formations" class="cta-btn">Commencer</a></li>
                 </ul>
             </nav>
@@ -593,7 +652,7 @@
             <h2 class="section-title">Nos Formations</h2>
             <div class="formations-grid">
                 <div class="formation-card">
-                    <h3>Formation Initiales</h3>
+                    <h3>Formation Initiale</h3>
                     <ul>
                         <li>Les bases du business digital</li>
                         <li>Création de ton offre</li>
@@ -601,7 +660,7 @@
                         <li>Support à l'écoute</li>
                     </ul>
                     <div class="price">50€</div>
-                    <a href="#contact" class="btn-primary">Rejoindre</a>
+                    <a href="https://votre-lien-formation-initiale.com" class="btn-primary" target="_blank" rel="noopener">Rejoindre</a>
                 </div>
                 <div class="formation-card">
                     <h3>Formation Premium</h3>
@@ -613,7 +672,7 @@
                         <li>Accès aux mise a jour (6mois)</li>
                     </ul>
                     <div class="price">100€</div>
-                    <a href="#contact" class="btn-primary">Rejoindre</a>
+                    <a href="https://votre-lien-formation-premium.com" class="btn-primary" target="_blank" rel="noopener">Rejoindre</a>
                 </div>
                 <div class="formation-card">
                     <h3>Formation Personnalisé</h3>
@@ -625,7 +684,7 @@
                         <li>Accès à vie à tous les programmes (suite au mise a jour)</li>
                     </ul>
                     <div class="price">250€</div>
-                    <a href="#contact" class="btn-primary">Rejoindre</a>
+                    <a href="https://votre-lien-formation-personnalisee.com" class="btn-primary" target="_blank" rel="noopener">Rejoindre</a>
                 </div>
             </div>
         </div>
@@ -669,7 +728,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>CYL Formations</h4>
+                    <h4>CYV Formations</h4>
                     <p>Transforme ta passion en business digital rentable avec nos formations complètes et notre accompagnement personnalisé.</p>
                     <div class="social-links">
                         <a href="#" aria-label="Facebook">📘</a>
@@ -710,6 +769,34 @@
     </footer>
 
     <script>
+        // Dark Mode Toggle
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeToggle = document.querySelector('.theme-toggle');
+            const currentTheme = html.getAttribute('data-theme');
+            
+            if (currentTheme === 'dark') {
+                html.removeAttribute('data-theme');
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const themeToggle = document.querySelector('.theme-toggle');
+            
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = '☀️';
+            }
+        });
+
         function toggleMenu() {
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
@@ -718,16 +805,19 @@
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                    // Close mobile menu after click
+                    document.getElementById('navLinks').classList.remove('active');
                 }
-                // Close mobile menu after click
-                document.getElementById('navLinks').classList.remove('active');
             });
         });
 
